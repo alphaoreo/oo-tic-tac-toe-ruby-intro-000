@@ -56,6 +56,7 @@ class TicTacToe
   def input_to_index
     puts "Please enter 1-9:"
     input = gets.strip
+    input= input.to_i
     index=input -1
     @current_spot=index
   end
