@@ -53,16 +53,16 @@ class TicTacToe
     puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
   end
 
-  def input_to_index
-    puts "Please enter 1-9:"
-    input = gets.strip
+  def input_to_index(input)
     input= input.to_i
     index=input -1
     @current_spot=index
   end
 
   def turn
-    choice=input_to_index
+    puts "Please enter 1-9:"
+    choice=gets.strip
+    input_to_index(choice)
     if valid_move?
       move
       display_board
