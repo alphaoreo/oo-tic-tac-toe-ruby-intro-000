@@ -62,25 +62,26 @@ class TicTacToe
   def turn
     puts "Please enter 1-9:"
     choice=gets.strip
-    input_to_index(choice)
-    if valid_move?
-      move
+    choice=input_to_index(choice)
+    if valid_move?(choice)
+      player=current_player
+      move(choice, player)
       display_board
     else
       turn
     end
   end
 
-  def move
-    @board[@current_spot]= @current_player
+  def move(index, player)
+    @board[index]=player
   end
 
-  def position_taken?
-    @board[@current_spot] != " "
+  def position_taken?(choice)
+    @board[choice] != " "
   end
 
-  def valid_move?
-    @current_spot.between(0,8) && !position_taken?
+  def valid_move?(choice)
+    choice.between(0,8) && !position_taken?(choice)
   end
 
   def turn_count
@@ -101,12 +102,11 @@ class TicTacToe
     else
       player= "O"
     end
-    @current_player = player
+    player
   end
 
   def play
     while !(over?) do
-      current_player
       turn
     end
     if won?
